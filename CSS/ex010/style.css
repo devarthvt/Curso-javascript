@@ -5,11 +5,12 @@
         }
 
         body{
-            background-color: lightcoral;
+
+            background-color: lightgray;
             display: flex;
             justify-content: center;
             align-items: center;
-            height: 50vh;
+            height: 60px;
         }
 
         div{

@@ -1,0 +1,32 @@
+h3{
+    color: rgb(60, 1, 116);
+}
+
+/* Utilizamos CLASSES para um grupo de elementos que precisam do mesmo estilo --> Class */
+
+/* Utilizamos IDs para um unico elemento que precisamos estilizar --> # IDs */
+
+#titulo{
+    color: orange(255, 0, 0);
+}
+
+.subtitulo{
+    color: rgb(255, 0, 170);
+}
+
+.basico{
+    color: blue;
+}
+
+.intermediario{
+    color: darkmagenta;
+}
+
+.avancado{
+    color: rgb(0, 255, 179);
+}
+
+.destaque{
+    background-color: yellow;
+    color: red;
+}

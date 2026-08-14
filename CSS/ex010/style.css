@@ -1,0 +1,22 @@
+  *{
+            box-sizing: border-box;
+            margin: 0px;
+            padding: 0px;
+        }
+
+        body{
+            background-color: lightcoral;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 50vh;
+        }
+
+        div{
+            background-color: lightgreen;
+            width: 200px;
+            height: 200px;
+            border: 5px solid black;
+        }
+
+        

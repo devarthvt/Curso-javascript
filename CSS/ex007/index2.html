@@ -1,0 +1,808 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>SPORTX - Notícias Esportivas</title>
+
+    <style>
+        /* =========================
+           CONFIGURAÇÕES GERAIS
+        ========================= */
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: #080b12;
+            color: white;
+            font-family: Arial, sans-serif;
+        }
+
+        a {
+            color: white;
+            text-decoration: none;
+        }
+
+
+        /* =========================
+           CABEÇALHO
+        ========================= */
+
+        header {
+            background: linear-gradient(90deg, #101827, #07151b);
+            border-bottom: 2px solid #00ffff;
+            box-shadow: 0 0 20px #00ffff55;
+
+            position: sticky;
+            top: 0;
+            z-index: 10;
+        }
+
+        .topo {
+            max-width: 1200px;
+            margin: auto;
+
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+
+            padding: 18px 20px;
+        }
+
+        .logo {
+            color: #00ffff;
+            font-size: 32px;
+            font-weight: bold;
+
+            text-shadow:
+                0 0 10px #00ffff,
+                0 0 25px #00ffff;
+        }
+
+        .logo span {
+            color: white;
+        }
+
+        .menu {
+            display: flex;
+            gap: 25px;
+        }
+
+        .menu a {
+            font-weight: bold;
+            transition: .3s;
+        }
+
+        .menu a:hover {
+            color: #00ffff;
+            text-shadow: 0 0 10px #00ffff;
+        }
+
+
+        /* =========================
+           MENU DE ESPORTES
+        ========================= */
+
+        .categorias {
+            background: #0d121c;
+            border-bottom: 1px solid #202b3d;
+
+            overflow-x: auto;
+        }
+
+        .categorias-container {
+            max-width: 1200px;
+            margin: auto;
+
+            display: flex;
+            gap: 25px;
+
+            padding: 12px 20px;
+        }
+
+        .categorias a {
+            color: #aeb9c9;
+            white-space: nowrap;
+            font-size: 14px;
+            transition: .3s;
+        }
+
+        .categorias a:hover {
+            color: #00ffff;
+        }
+
+
+        /* =========================
+           CONTEÚDO PRINCIPAL
+        ========================= */
+
+        main {
+            max-width: 1200px;
+            margin: 40px auto;
+            padding: 0 20px;
+        }
+
+        .titulo {
+            margin-bottom: 25px;
+
+            border-left: 5px solid #00ffff;
+            padding-left: 15px;
+        }
+
+        .titulo h1 {
+            font-size: 28px;
+        }
+
+        .titulo p {
+            color: #8894a5;
+            margin-top: 5px;
+        }
+
+
+        /* =========================
+           DESTAQUE PRINCIPAL
+        ========================= */
+
+        .destaques {
+            display: grid;
+
+            grid-template-columns: 2fr 1fr;
+
+            gap: 20px;
+        }
+
+        .noticia-principal {
+            min-height: 400px;
+
+            padding: 30px;
+
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+
+            border-radius: 15px;
+
+            background:
+                linear-gradient(
+                    transparent,
+                    rgba(0,0,0,.9)
+                ),
+                linear-gradient(135deg, #123d4a, #111827);
+
+            border: 1px solid #00ffff55;
+
+            transition: .4s;
+        }
+
+        .noticia-principal:hover {
+            transform: scale(1.02);
+
+            border-color: #00ffff;
+
+            box-shadow:
+                0 0 20px #00ffff55,
+                inset 0 0 30px #00ffff11;
+        }
+
+        .noticia-principal .categoria {
+            color: #00ffff;
+            font-size: 13px;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+
+        .noticia-principal h2 {
+            font-size: 34px;
+            line-height: 1.1;
+        }
+
+        .noticia-principal p {
+            color: #c5ceda;
+            margin-top: 12px;
+        }
+
+
+        /* =========================
+           NOTÍCIAS SECUNDÁRIAS
+        ========================= */
+
+        .secundarias {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .noticia {
+            background: #101722;
+
+            border: 1px solid #263346;
+            border-radius: 12px;
+
+            padding: 20px;
+
+            transition: .3s;
+        }
+
+        .noticia:hover {
+            transform: translateX(8px);
+
+            border-color: #00ffff;
+
+            box-shadow:
+                0 0 15px #00ffff33;
+        }
+
+        .noticia small {
+            color: #00ffff;
+            font-weight: bold;
+        }
+
+        .noticia h3 {
+            margin-top: 8px;
+            font-size: 20px;
+        }
+
+        .noticia p {
+            color: #8f9bab;
+            margin-top: 8px;
+            font-size: 14px;
+        }
+
+
+        /* =========================
+           SEÇÃO DE NOTÍCIAS
+        ========================= */
+
+        .secao {
+            margin-top: 50px;
+        }
+
+        .secao h2 {
+            margin-bottom: 20px;
+
+            border-bottom: 1px solid #263346;
+            padding-bottom: 12px;
+
+            color: #00ffff;
+        }
+
+        .grid-noticias {
+            display: grid;
+
+            grid-template-columns:
+                repeat(3, 1fr);
+
+            gap: 20px;
+        }
+
+        .card {
+            background: #101722;
+
+            border: 1px solid #263346;
+            border-radius: 12px;
+
+            overflow: hidden;
+
+            transition: .3s;
+        }
+
+        .card:hover {
+            transform: translateY(-8px);
+
+            border-color: #00ffff;
+
+            box-shadow: 0 0 20px #00ffff44;
+        }
+
+        .imagem {
+            height: 160px;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            font-size: 45px;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #123c45,
+                    #16132c
+                );
+        }
+
+        .card-conteudo {
+            padding: 18px;
+        }
+
+        .card-conteudo small {
+            color: #00ffff;
+        }
+
+        .card-conteudo h3 {
+            margin-top: 8px;
+            line-height: 1.2;
+        }
+
+        .card-conteudo p {
+            color: #8f9bab;
+            margin-top: 8px;
+            font-size: 14px;
+        }
+
+
+        /* =========================
+           TABELA / JOGOS
+        ========================= */
+
+        .jogos {
+            display: grid;
+
+            grid-template-columns:
+                repeat(3, 1fr);
+
+            gap: 15px;
+        }
+
+        .jogo {
+            background: #0f151f;
+
+            border: 1px solid #263346;
+
+            padding: 20px;
+
+            text-align: center;
+
+            border-radius: 10px;
+        }
+
+        .jogo span {
+            color: #8f9bab;
+            font-size: 13px;
+        }
+
+        .placar {
+            margin: 12px 0;
+
+            font-size: 22px;
+            font-weight: bold;
+
+            color: #00ffff;
+        }
+
+
+        /* =========================
+           RODAPÉ
+        ========================= */
+
+        footer {
+            margin-top: 60px;
+
+            padding: 35px 20px;
+
+            text-align: center;
+
+            background: #05070b;
+
+            border-top: 1px solid #263346;
+        }
+
+        footer strong {
+            color: #00ffff;
+        }
+
+        footer p {
+            color: #687386;
+            margin-top: 8px;
+        }
+
+
+        /* =========================
+           RESPONSIVIDADE
+        ========================= */
+
+        @media (max-width: 800px) {
+
+            .menu {
+                display: none;
+            }
+
+            .destaques {
+                grid-template-columns: 1fr;
+            }
+
+            .grid-noticias,
+            .jogos {
+                grid-template-columns: 1fr;
+            }
+
+            .noticia-principal {
+                min-height: 320px;
+            }
+
+            .noticia-principal h2 {
+                font-size: 26px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+
+    <!-- =========================
+         CABEÇALHO
+    ========================= -->
+
+    <header>
+
+        <div class="topo">
+
+            <!-- Logo do nosso site -->
+            <div class="logo">
+                SPORT<span>X</span>
+            </div>
+
+            <!-- Menu principal -->
+            <nav class="menu">
+                <a href="#">Início</a>
+                <a href="#">Futebol</a>
+                <a href="#">Basquete</a>
+                <a href="#">Tênis</a>
+                <a href="#">Fórmula 1</a>
+            </nav>
+
+        </div>
+
+
+        <!-- Categorias esportivas -->
+        <nav class="categorias">
+
+            <div class="categorias-container">
+
+                <a href="#">Brasileirão</a>
+                <a href="#">Copa do Brasil</a>
+                <a href="#">Libertadores</a>
+                <a href="#">Champions</a>
+                <a href="#">NBA</a>
+                <a href="#">NFL</a>
+                <a href="#">Vôlei</a>
+                <a href="#">Surfe</a>
+                <a href="#">MMA</a>
+
+            </div>
+
+        </nav>
+
+    </header>
+
+
+    <!-- =========================
+         CONTEÚDO
+    ========================= -->
+
+    <main>
+
+        <div class="titulo">
+
+            <h1>Últimas notícias</h1>
+
+            <p>
+                Informação, resultados e tudo sobre o mundo dos esportes.
+            </p>
+
+        </div>
+
+
+        <!-- =========================
+             DESTAQUES
+        ========================= -->
+
+        <section class="destaques">
+
+            <!-- Notícia principal -->
+
+            <article class="noticia-principal">
+
+                <span class="categoria">
+                    FUTEBOL
+                </span>
+
+                <h2>
+                    Craque decide nos minutos finais e garante vitória emocionante
+                </h2>
+
+                <p>
+                    Confira os principais detalhes da partida e tudo que aconteceu
+                    dentro de campo.
+                </p>
+
+            </article>
+
+
+            <!-- Notícias menores -->
+
+            <div class="secundarias">
+
+                <article class="noticia">
+
+                    <small>MERCADO DA BOLA</small>
+
+                    <h3>
+                        Clube anuncia novo reforço para a temporada
+                    </h3>
+
+                    <p>
+                        Negociação foi concluída nesta manhã.
+                    </p>
+
+                </article>
+
+
+                <article class="noticia">
+
+                    <small>BASQUETE</small>
+
+                    <h3>
+                        Time brasileiro vence partida decisiva
+                    </h3>
+
+                    <p>
+                        Equipe conseguiu uma grande virada.
+                    </p>
+
+                </article>
+
+
+                <article class="noticia">
+
+                    <small>FÓRMULA 1</small>
+
+                    <h3>
+                        Piloto revela preparação para próxima corrida
+                    </h3>
+
+                    <p>
+                        Expectativa é de uma disputa acirrada.
+                    </p>
+
+                </article>
+
+            </div>
+
+        </section>
+
+
+        <!-- =========================
+             MAIS NOTÍCIAS
+        ========================= -->
+
+        <section class="secao">
+
+            <h2>Mais notícias</h2>
+
+            <div class="grid-noticias">
+
+
+                <article class="card">
+
+                    <div class="imagem">
+                        ⚽
+                    </div>
+
+                    <div class="card-conteudo">
+
+                        <small>FUTEBOL</small>
+
+                        <h3>
+                            Campeonato entra em fase decisiva
+                        </h3>
+
+                        <p>
+                            Confira os próximos jogos e as principais disputas.
+                        </p>
+
+                    </div>
+
+                </article>
+
+
+                <article class="card">
+
+                    <div class="imagem">
+                        🏀
+                    </div>
+
+                    <div class="card-conteudo">
+
+                        <small>BASQUETE</small>
+
+                        <h3>
+                            Grandes estrelas entram em quadra
+                        </h3>
+
+                        <p>
+                            Veja tudo sobre os próximos confrontos.
+                        </p>
+
+                    </div>
+
+                </article>
+
+
+                <article class="card">
+
+                    <div class="imagem">
+                        🎾
+                    </div>
+
+                    <div class="card-conteudo">
+
+                        <small>TÊNIS</small>
+
+                        <h3>
+                            Torneio reúne os melhores jogadores
+                        </h3>
+
+                        <p>
+                            Competição promete grandes partidas.
+                        </p>
+
+                    </div>
+
+                </article>
+
+
+                <article class="card">
+
+                    <div class="imagem">
+                        🏄
+                    </div>
+
+                    <div class="card-conteudo">
+
+                        <small>SURFE</small>
+
+                        <h3>
+                            Brasileiro avança na competição
+                        </h3>
+
+                        <p>
+                            Atleta busca mais uma vitória.
+                        </p>
+
+                    </div>
+
+                </article>
+
+
+                <article class="card">
+
+                    <div class="imagem">
+                        🥊
+                    </div>
+
+                    <div class="card-conteudo">
+
+                        <small>COMBATE</small>
+
+                        <h3>
+                            Luta principal promete grande espetáculo
+                        </h3>
+
+                        <p>
+                            Confira os detalhes do confronto.
+                        </p>
+
+                    </div>
+
+                </article>
+
+
+                <article class="card">
+
+                    <div class="imagem">
+                        🏎️
+                    </div>
+
+                    <div class="card-conteudo">
+
+                        <small>MOTOR</small>
+
+                        <h3>
+                            Equipes se preparam para a próxima etapa
+                        </h3>
+
+                        <p>
+                            Veja as novidades antes da corrida.
+                        </p>
+
+                    </div>
+
+                </article>
+
+            </div>
+
+        </section>
+
+
+        <!-- =========================
+             JOGOS
+        ========================= -->
+
+        <section class="secao">
+
+            <h2>Jogos de hoje</h2>
+
+            <div class="jogos">
+
+                <div class="jogo">
+
+                    <span>Futebol</span>
+
+                    <div class="placar">
+                        TIME A × TIME B
+                    </div>
+
+                    <span>19:00</span>
+
+                </div>
+
+
+                <div class="jogo">
+
+                    <span>Basquete</span>
+
+                    <div class="placar">
+                        TIME C × TIME D
+                    </div>
+
+                    <span>20:30</span>
+
+                </div>
+
+
+                <div class="jogo">
+
+                    <span>Vôlei</span>
+
+                    <div class="placar">
+                        TIME E × TIME F
+                    </div>
+
+                    <span>21:00</span>
+
+                </div>
+
+            </div>
+
+        </section>
+
+    </main>
+
+
+    <!-- =========================
+         RODAPÉ
+    ========================= -->
+
+    <footer>
+
+        <strong>SPORTX</strong>
+
+        <p>
+            Seu portal de esportes.
+        </p>
+
+        <p>
+            © 2026 - Projeto educacional
+        </p>
+
+    </footer>
+
+</body>
+</html>

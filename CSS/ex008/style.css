@@ -1,0 +1,12 @@
+.container {
+  background-color: lightcoral;
+  display: flex /* Display flex sempre no pai dos itens */
+}
+
+.container > div {
+  background-color: rgb(164, 164, 259);
+  border: 1px solid black;
+  padding: 10px;
+  text-align: center;
+  flex: auto /* Flex auto sempre no filho dos itens */
+}
